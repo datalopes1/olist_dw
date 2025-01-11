@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "olist-dw"
+version = "0.1.0"
+description = "Olist Dimensional Warehouse"
+authors = ["datalopes1 <datalopes1@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+dbt-core = "^1.9.1"
+dbt-bigquery = "^1.9.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
