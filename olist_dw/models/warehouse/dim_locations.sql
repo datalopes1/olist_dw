@@ -6,6 +6,13 @@ WITH source AS (
         , geolocation_city AS city
         , geolocation_state AS state
     FROM {{ref('stg_geolocation')}}
+),
+
+clean_source AS (
+    SELECT
+        *
+        , ROW_NUMBER() OVER(PARTITION BY zip_code_prefix) AS rn
+    FROM source
 )
 
 SELECT
@@ -15,4 +22,5 @@ SELECT
     , city
     , state
     , CURRENT_TIMESTAMP() AS ingestion_timestamp
-FROM source
+FROM clean_source
+WHERE rn = 1

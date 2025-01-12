@@ -36,3 +36,17 @@ models:
       +enabled: true
       +materialized: table
       +schema: stg_olist
+    warehouse:
+      +enabled: true
+      +materialized: table
+      +schema: dwh_olist
+    marts:
+      sales:
+        +enabled: true
+        +materialized: table
+        +schema: sales
+
+      rfm:
+        +enabled: true
+        +materialized: table
+        +schema: rfm
