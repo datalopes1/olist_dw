@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: fact_orders
+    description: "Fato de vendas agregadas por pedido."
+    columns:
+      - name: order_id
+        description: "ID do pedido."
+        tests:
+          - not_null
+          - unique
+      - name: seller_id
+        description: "ID do vendedor"
+        tests:
+          - not_null
+      - name: customer_id
+        description: "ID do cliente"
+        tests:
+          - not_null

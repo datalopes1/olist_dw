@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: rfm_obt
+    description: "OBT com os dados para análise RFM"
+    columns:
+      - name: customer_id
+        description: "ID do cliente"
+        tests:
+          - not_null
+          - unique

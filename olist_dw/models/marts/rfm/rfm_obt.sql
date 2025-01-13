@@ -52,16 +52,16 @@ SELECT
     , m_score
     , rfm_score
     , CASE
-        WHEN rfm_score IN ('555', '554', '544', '545') THEN 'Champion'
-        WHEN rfm_score IN ('445', '444', '454', '455', '355', '354') THEN 'Loyal'
-        WHEN rfm_score IN ('554', '544', '534', '535', '525', '515') THEN 'Potential Loyalist'
-        WHEN rfm_score IN ('555', '554', '553', '552', '551', '511') THEN 'Recent Customer'
-        WHEN rfm_score IN ('344', '345', '334', '335', '325', '315') THEN 'At Risk'
-        WHEN rfm_score IN ('111', '112', '113', '114', '115', '121', '131', '141') THEN 'Lost'
-        WHEN rfm_score IN ('511', '512', '513', '514', '515') THEN 'Promising'
-        WHEN rfm_score IN ('244', '243', '242', '241', '234', '233', '232', '231') THEN 'Need Attetion'
+        WHEN r_score = 5 AND f_score >= 4 AND m_score >= 4 THEN 'Champion'
+        WHEN r_score IN (5, 4) AND f_score >= 3 AND m_score >= 3 THEN 'Loyal Customers'
+        WHEN r_score IN (4, 5) AND f_score BETWEEN 1 AND 3 AND m_score BETWEEN 1 AND 3 THEN 'Potential Loyalist'
+        WHEN r_score = 5 THEN 'Recent Customers'
+        WHEN r_score IN (2, 3) AND f_score >= 3 AND m_score >= 3 THEN 'At Risk'
+        WHEN r_score = 1 THEN 'Lost Customers'
+        WHEN r_score IN (3, 4) AND f_score <= 2 AND m_score <= 2 THEN 'Need Attention'
+        WHEN r_score IN (1, 2) AND f_score <= 2 AND m_score <= 2 THEN 'Hibernating'
         ELSE 'Others'
-    END AS customer_segment
+      END AS customer_segment
     , CURRENT_TIMESTAMP() AS ingestion_timestamp
 
 FROM segmentation
