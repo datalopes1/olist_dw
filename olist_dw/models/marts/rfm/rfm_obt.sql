@@ -4,7 +4,7 @@ SELECT
   , MAX(order_date) AS last_order
   , COUNT(DISTINCT order_id) AS total_orders
   , SUM(order_value) AS total_spent 
-FROM {{ref('fact_orders')}} 
+FROM {{ref('f_orders')}} 
 GROUP BY 1
 ),
 
@@ -52,14 +52,14 @@ SELECT
     , m_score
     , rfm_score
     , CASE
-        WHEN r_score = 5 AND f_score >= 4 AND m_score >= 4 THEN 'Champion'
-        WHEN r_score IN (5, 4) AND f_score >= 3 AND m_score >= 3 THEN 'Loyal Customers'
-        WHEN r_score IN (4, 5) AND f_score BETWEEN 1 AND 3 AND m_score BETWEEN 1 AND 3 THEN 'Potential Loyalist'
+        WHEN r_score = 5 AND f_score IN (4, 5) AND m_score IN (4, 5) THEN 'Champion'
+        WHEN r_score IN (4, 5) AND f_score IN (3, 4, 5) AND m_score IN (3, 4, 5) THEN 'Loyal Customers'
+        WHEN r_score IN (4, 5) AND f_score IN (1, 2, 3) AND m_score IN (1, 2, 3) THEN 'Potential Loyalist'
         WHEN r_score = 5 THEN 'Recent Customers'
-        WHEN r_score IN (2, 3) AND f_score >= 3 AND m_score >= 3 THEN 'At Risk'
+        WHEN r_score IN (2, 3) AND f_score IN (3, 4, 5) AND m_score IN (3, 4, 5) THEN 'At Risk'
         WHEN r_score = 1 THEN 'Lost Customers'
-        WHEN r_score IN (3, 4) AND f_score <= 2 AND m_score <= 2 THEN 'Need Attention'
-        WHEN r_score IN (1, 2) AND f_score <= 2 AND m_score <= 2 THEN 'Hibernating'
+        WHEN r_score IN (3, 4) AND f_score IN (1, 2) AND m_score IN (1, 2) THEN 'Need Attention'
+        WHEN r_score IN (1, 2) AND f_score IN (1, 2) AND m_score IN (1, 2) THEN 'Hibernating'
         ELSE 'Others'
       END AS customer_segment
     , CURRENT_TIMESTAMP() AS ingestion_timestamp
