@@ -36,7 +36,7 @@ No Dimensional DW foi criado foram realizados os processos de limpeza e manipula
 
 #### Reporting Layer
 
-Nesta etapa foram criados dois Data Marts o primeiro é focado na criação de relatórios sobre vendas, e o uma OBT (One Big Table) para a criação de análises RFM.
+Nesta etapa foram criados dois Data Marts o primeiro é focado na criação de relatórios sobre vendas, e o segundo uma OBT (One Big Table) para a criação de análises RFM.
 
 ##### Mart Sales
 ![erd](docs/img/erd.png)
