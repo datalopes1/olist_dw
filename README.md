@@ -39,6 +39,7 @@ Nessa camada, foram realizadas a limpeza e a manipulação dos dados, e o Data W
 
 #### Reporting Layer
 
+
 Nessa camada, foram criados dois Data Marts: o Sales Mart, para criar relatórios de acompanhamento da performance de vendas, e o RFM Mart, para a realização de segmentação e análises com o método RFM.
 
 ##### Mart Sales
