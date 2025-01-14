@@ -2,10 +2,11 @@
 ![olist](https://i.imgur.com/EoWCjR8.jpeg)
 
 ## 📌 Introdução
-O dataset contém dados de transações realizadas por dirversos pequenos negócios brasileiros cadastrados na plataforma de vendas para marketplace. Estes pequenos negócios conseguem através do [Olist Store](https://olist.com/) vender seus produtos diretamente e os enviar através dos parceiros logísticos da Olist. 
+O *dataset* contém dados de transações realizadas por diversos pequenos negócios brasileiros cadastrados na plataforma de vendas para marketplace. Esses pequenos negócios conseguem, através da Olist Store, vender seus produtos diretamente e enviá-los por meio dos parceiros logísticos da Olist.
 
 ### Objetivos
-Este projeto tem dois objetivos chave: a criação de um Data Warehouse utilizando o BigQuery, e um *dashboard* com um panorâma das vendas e uma análise RFM para segmentação de clientes.  
+Este projeto tem dois objetivos chave: a criação de um Data Warehouse utilizando o BigQuery, e um *dashboard* com um panorâma das vendas e uma análise RFM para segmentação de clientes.
+
 
 ## 🛠️ Ferramentas utilizadas
 - Python 3.12^
@@ -28,18 +29,20 @@ Os dados originais estavam em arquivos .csv que foram enviados para o BigQuery. 
 
 #### Staging Layer
 
-Na staging layer foi realizada a carga dos dados brutos, sem nenhuma manipulação.
+Nessa camada foi realizada a carga dos arquivos brutos.
 
 #### Dimensional Data Warehouse
 
-No Dimensional DW foi criado foram realizados os processos de limpeza e manipulação dos dados, e então os dados foram modelados com base no Star Schema com tabelas fato e dimensão.  
+Nessa camada, foram realizadas a limpeza e a manipulação dos dados, e o Data Warehouse foi modelado com tabelas fato e dimensão em um Snowflake Schema.
+
+![dw](docs/img/dwerd.png)
 
 #### Reporting Layer
 
-Nesta etapa foram criados dois Data Marts o primeiro é focado na criação de relatórios sobre vendas, e o uma OBT (One Big Table) para a criação de análises RFM.
+Nessa camada, foram criados dois Data Marts: o Sales Mart, para criar relatórios de acompanhamento da performance de vendas, e o RFM Mart, para a realização de segmentação e análises com o método RFM.
 
 ##### Mart Sales
-![erd](docs/img/erd.png)
+![erd](docs/img/marterd.png)
 
 ##### Mart RFM 
 
@@ -64,7 +67,7 @@ Nesta etapa foram criados dois Data Marts o primeiro é focado na criação de r
 
 Dashboard interativo no [Power BI Service](https://app.powerbi.com/view?r=eyJrIjoiNjM4MzViNzQtYzcyMy00MzJmLTgwODctNzViZTAxNjU1OTY3IiwidCI6ImJmOWUzNDgwLTkyM2UtNDNmMS04OTE1LTlmMmY3YjY2NTc0MSJ9).
 
-###### Instalação do poetry
+##### Instalação do poetry
 
 ```bash
 pip install poetry
