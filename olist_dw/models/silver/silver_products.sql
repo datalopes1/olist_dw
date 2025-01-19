@@ -1,7 +1,7 @@
 WITH source AS (
-    SELECT
+     SELECT
         product_id 
-        , product_category_name 
+        , INITCAP(REPLACE(product_category_name, "_", " ")) AS product_category_name
         , product_name_lenght 
         , product_description_lenght 
         , product_photos_qty 
@@ -9,7 +9,8 @@ WITH source AS (
         , product_length_cm 
         , product_height_cm 
         , product_width_cm 
-FROM {{ref('stg_products')}}
+    FROM {{ref('bronze_products')}}
+    WHERE product_id IS NOT NULL
 ),
 
 clean_source AS (
@@ -32,4 +33,3 @@ SELECT
     , CURRENT_TIMESTAMP() AS ingestion_timestamp 
 FROM clean_source
 WHERE rn = 1
-    
