@@ -32,21 +32,16 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   olist_dw:
     # Config indicated by + and applies to all files under models/example/
-    staging:
+    bronze:
+      +enabled: true
+      +materialized: view
+      +schema: bronze
+    silver:
       +enabled: true
       +materialized: table
-      +schema: stg_olist
-    warehouse:
-      +enabled: true
-      +materialized: table
-      +schema: dwh_olist
-    marts:
+      +schema: silver
+    gold:
       sales:
         +enabled: true
         +materialized: table
         +schema: sales
-
-      rfm:
-        +enabled: true
-        +materialized: table
-        +schema: rfm
