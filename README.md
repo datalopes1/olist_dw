@@ -39,12 +39,7 @@ Dados *business-ready*. Os dados foram agregados para os uso de criação de das
 
 ![golden](docs/img/golden.png)
 
-<<<<<<< HEAD
 ##### Classificações do RFM
-=======
-
-Nessa camada, foram criados dois Data Marts: o Sales Mart, para criar relatórios de acompanhamento da performance de vendas, e o RFM Mart, para a realização de segmentação e análises com o método RFM.
->>>>>>> 6e0d0d49f5dc183bf4ddec5e7576545c24cdd75a
 
 A segmentação RFM seguiu os seguintes critérios:
 
