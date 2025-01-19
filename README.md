@@ -16,56 +16,46 @@ Este projeto tem dois objetivos chave: a criação de um Data Warehouse utilizan
 
 ## 📊 Dados
 
-![erd](docs/img/original_erd.png)
+![erd](docs/img/HRhd2Y0.png)
 
 O dataset com os arquivos originais pode ser encontrado no [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce).
 
 ## ✅ Resultados
 ### Modelagem de Dados
 
-![arq](docs/img/arqui.png)
+![arq](docs/img/archi.png)
 
-Os dados originais estavam em arquivos .csv que foram enviados para o BigQuery. Na pasta `docs/` esta localizado o arquivo de Source to Target Mapping onde estão documentados todos os processos realizados na criação do Data Warehouse.
+#### Bronze Layer
 
-#### Staging Layer
+Ingestão dos dados brutos em seu formato original. 
 
-Nessa camada foi realizada a carga dos arquivos brutos.
+#### Silver Layer
 
-#### Dimensional Data Warehouse
+Dados transformados, limpos e enriquecidos vindos da bronze layer.
 
-Nessa camada, foram realizadas a limpeza e a manipulação dos dados, e o Data Warehouse foi modelado com tabelas fato e dimensão em um Snowflake Schema.
+#### Golden Layer
 
-![dw](docs/img/dwerd.png)
+Dados *business-ready*. Os dados foram agregados para os uso de criação de dashboards e relatórios. Os dados foram armazenados em Star Schema.
 
-#### Reporting Layer
+![golden](docs/img/golden.png)
 
-Nessa camada, foram criados dois Data Marts: o Sales Mart, para criar relatórios de acompanhamento da performance de vendas, e o RFM Mart, para a realização de segmentação e análises com o método RFM.
+##### Classificações do RFM
 
-##### Mart Sales
-![erd](docs/img/marterd.png)
+A segmentação RFM seguiu os seguintes critérios:
 
-##### Mart RFM 
+|Segmento|Descrição|RFM Score|
+|---|---|---|
+|Top Customers|Os melhores clientes|555, 554, 545, 455|
+|Loayl Customers|Clientes com a maior recência|Todos com a recência 5|
+|Big Spenders|Clientes com o maior valor moentário|Todos com valor monetário 5|
+|Frequent Buyers|Clientes com a maior frequência|Todos com a frequência 5|
+|Lost Customers|Clientes perdidos|111, 112, 121|
+|Average Customers|Clientes normais|Restantes dos Scores|
 
-|Coluna|Descrição|
-|---|---|
-|customer_id|Id do cliente|
-|recency|Recência (dias)|
-|frequency|Frequência|
-|monetary|Valor monetário|
-|r_score|Pontuação de recência|
-|f_score|Potuação de frequência|
-|m_score|Pontuação de valor monetário|
-|rfm_score|Pontuação de RFM|
-|customer_segment|Segmento do cliente|
-
-##### Dashboard 
-
-![dash](docs/img/report_1.png)
-![dash](docs/img/report_2.png)
 
 ## ⚙️ Instalação e uso
 
-Dashboard interativo no [Power BI Service](https://app.powerbi.com/view?r=eyJrIjoiNjM4MzViNzQtYzcyMy00MzJmLTgwODctNzViZTAxNjU1OTY3IiwidCI6ImJmOWUzNDgwLTkyM2UtNDNmMS04OTE1LTlmMmY3YjY2NTc0MSJ9).
+Dashboard interativo no [Power BI Service](https://app.powerbi.com/view?r=eyJrIjoiMGU5NDQ1ZmEtMzNhOC00OGU3LTk4OTktY2EyY2M3ZGVmMDUxIiwidCI6ImJmOWUzNDgwLTkyM2UtNDNmMS04OTE1LTlmMmY3YjY2NTc0MSJ9).
 
 ##### Instalação do poetry
 
