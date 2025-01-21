@@ -6,8 +6,7 @@ SELECT
         , o.order_delivered_carrier_date
         , o.order_delivered_customer_date
         , o.order_estimated_delivery_date
-        , p.payment_type
-        , p.payment_installments
+        , INITCAP(p.payment_type) AS payment_type
         , CURRENT_TIMESTAMP() AS ingestion_timestamp
 FROM {{ ref('silver_orders')}} o
 LEFT JOIN {{ ref('silver_order_items')}} oi 

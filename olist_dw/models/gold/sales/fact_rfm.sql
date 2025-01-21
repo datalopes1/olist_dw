@@ -1,11 +1,11 @@
 WITH source AS (
 SELECT
-    c.customer_unique_id AS customer_id
+    c.customer_unique_id
     , MAX(o.order_purchase_timestamp) AS last_order
     , COUNT(DISTINCT o.order_id) AS frequency
     , SUM(oi.total_order_value) AS monetary
 FROM {{ref('silver_orders')}} o
-LEFT JOIN {{ref('silver_customer')}} c
+LEFT JOIN {{ref('silver_customers')}} c
     ON o.customer_id = c.customer_id
 LEFT JOIN {{ref('silver_order_items')}} oi
     ON o.order_id = oi.order_id
@@ -16,7 +16,7 @@ GROUP BY c.customer_unique_id
 
 rfm AS (
 SELECT
-    customer_id
+    customer_unique_id
     , DATE_DIFF(DATETIME '2018-10-31 00:00:00', SAFE_CAST(last_order AS DATETIME), DAY) AS recency
     , frequency
     , monetary
@@ -25,7 +25,7 @@ FROM source
 
 score AS(
 SELECT
-    customer_id
+    customer_unique_id
     , recency
     , frequency
     , monetary
@@ -37,7 +37,7 @@ FROM rfm
 
 segmentation AS (
 SELECT
-  customer_id
+  customer_unique_id
   , recency
   , frequency
   , monetary
@@ -49,7 +49,7 @@ FROM score
 )
 
 SELECT
-    customer_id
+    customer_unique_id
     , recency
     , frequency
     , monetary

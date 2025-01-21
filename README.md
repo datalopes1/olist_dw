@@ -37,7 +37,7 @@ Dados transformados, limpos e enriquecidos vindos da bronze layer.
 
 Dados *business-ready*. Os dados foram agregados para os uso de criação de dashboards e relatórios. Os dados foram armazenados em Star Schema.
 
-![golden](docs/img/golden.png)
+![golden](docs/img/golden_layer.PNG)
 
 ##### Classificações do RFM
 

@@ -8,7 +8,7 @@ WITH source AS (
     WHERE seller_id IS NOT NULL
 ),
 
-clean_source AS (
+clean AS (
     SELECT
         *
         , ROW_NUMBER() OVER(PARTITION BY seller_id) AS rn
@@ -21,5 +21,5 @@ SELECT
     , seller_city	
     , seller_state
     , CURRENT_TIMESTAMP() AS ingestions_timestamp
-FROM clean_source
+FROM clean
 WHERE rn = 1
