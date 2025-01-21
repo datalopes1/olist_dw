@@ -6,4 +6,4 @@ SELECT
     , geolocation_city AS city
     , geolocation_state AS state
     , CURRENT_TIMESTAMP() AS ingestion_timestamp
-FROM {{ref('silver_geolocation')}}
+FROM {{ref('silver_geolocations')}}

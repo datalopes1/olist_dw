@@ -9,7 +9,7 @@ WITH source AS (
     WHERE order_id IS NOT NULL
 ),
 
-clean_source AS (
+clean AS (
     SELECT 
         *
         , ROW_NUMBER() OVER(PARTITION BY order_id) AS rn
@@ -23,6 +23,5 @@ SELECT
     , payment_installments
     , payment_value
     , CURRENT_TIMESTAMP() AS ingestion_timestamp
-FROM clean_source
-WHERE 
-    rn = 1
+FROM clean
+WHERE rn = 1

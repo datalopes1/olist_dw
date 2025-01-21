@@ -1,7 +1,7 @@
 WITH source AS (
     SELECT 
         order_id
-        , order_item_id
+        , order_item_id AS quantity
         , product_id
         , seller_id
         , shipping_limit_date
@@ -15,11 +15,11 @@ WITH source AS (
         AND seller_id IS NOT NULL
 ),
 
-clean_source AS (
-    SELECT 
-        *
-        , ROW_NUMBER() OVER(PARTITION BY order_id) AS rn
-    FROM source
+clean AS (
+  SELECT
+    *
+    , ROW_NUMBER() OVER(PARTITION BY order_id) AS rn
+  FROM source
 )
 
 SELECT 
@@ -27,11 +27,10 @@ SELECT
     , product_id
     , seller_id
     , shipping_limit_date
-    , order_item_id AS order_quantity
-    , price
+    , quantity
+    , price 
     , freight_value
-    , total_order_value
+    , total_order_value 
     , CURRENT_TIMESTAMP() AS ingestion_timestamp
-FROM clean_source
-WHERE 
-    rn = 1
+FROM clean
+WHERE rn = 1
