@@ -46,7 +46,7 @@ A segmentação RFM seguiu os seguintes critérios:
 |Segmento|Descrição|RFM Score|
 |---|---|---|
 |Top Customers|Os melhores clientes|555, 554, 545, 455|
-|Loayl Customers|Clientes com a maior recência|Todos com a recência 5|
+|Loyal Customers|Clientes com a maior recência|Todos com a recência 5|
 |Big Spenders|Clientes com o maior valor moentário|Todos com valor monetário 5|
 |Frequent Buyers|Clientes com a maior frequência|Todos com a frequência 5|
 |Lost Customers|Clientes perdidos|111, 112, 121|
